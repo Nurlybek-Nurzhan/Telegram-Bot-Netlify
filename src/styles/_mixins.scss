@@ -1,0 +1,99 @@
+@use "variables" as *;
+
+// ==============================================
+// RESPONSIVE BREAKPOINT
+// ==============================================
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+// ==============================================
+// FLEXBOX SHORTCUTS
+// ==============================================
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// ==============================================
+// FOCUS STATE (Accessibility)
+// ==============================================
+@mixin focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px $color-accent-glow;
+  border-color: $color-accent;
+}
+
+// ==============================================
+// SMOOTH TRANSITIONS
+// ==============================================
+@mixin transition($properties: all) {
+  transition: $properties $transition-normal;
+}
+
+// ==============================================
+// CARD STYLE
+// ==============================================
+@mixin card {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+}
+
+// ==============================================
+// INPUT BASE STYLES
+// ==============================================
+@mixin input-base {
+  width: 100%;
+  padding: $space-4;
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  color: $color-text-primary;
+  background: $color-bg-primary;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  @include transition;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:hover {
+    border-color: $color-border-hover;
+  }
+
+  &:focus {
+    @include focus-ring;
+  }
+}
+
+// ==============================================
+// BUTTON BASE STYLES
+// ==============================================
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-lg;
+  border: none;
+  cursor: pointer;
+  @include transition;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "artisan-schools-feedback-demo-bot",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "dev:vite": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "sass": "^1.97.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "@netlify/functions": "^5.1.1",
+    "dotenv": "^17.2.3"
+  }
+}
