@@ -1,8 +1,4 @@
-// Load environment variables from .env file for local development
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
+// Environment variables are automatically loaded by Netlify
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
@@ -63,12 +59,16 @@ exports.handler = async (event) => {
 
   if (!BOT_TOKEN || !CHAT_ID) {
     console.error("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
+    console.error("BOT_TOKEN exists:", !!BOT_TOKEN);
+    console.error("CHAT_ID exists:", !!CHAT_ID);
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({ error: "Server configuration error" }),
     };
   }
+
+  console.log("Function invoked with chat_id:", CHAT_ID);
 
   let data;
 
@@ -122,11 +122,15 @@ exports.handler = async (event) => {
     };
   } catch (error) {
     console.error("Error sending to Telegram:", error);
+    console.error("Error details:", error.message);
 
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: "Failed to send request" }),
+      body: JSON.stringify({
+        error: "Failed to send request",
+        details: error.message
+      }),
     };
   }
 };

@@ -14,6 +14,7 @@
   targetPort = 5173
   autoLaunch = false
   functions = "netlify/functions"
+  framework = "#custom"
 
 [[redirects]]
   from = "/*"
